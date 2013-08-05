@@ -706,7 +706,7 @@ class DocumentPersister
         $owner = $collection->getOwner();
         $ownerClass = $this->dm->getClassMetadata(get_class($owner));
         $targetClass = $this->dm->getClassMetadata($mapping['targetDocument']);
-        $mappedByMapping = $targetClass->fieldMappings[$mapping['mappedBy']];
+        $mappedByMapping = @$targetClass->fieldMappings[$mapping['mappedBy']];
         $mappedByFieldName = isset($mappedByMapping['simple']) && $mappedByMapping['simple'] ? $mapping['mappedBy'] : $mapping['mappedBy'].'.$id';
         $criteria = array_merge(
             array($mappedByFieldName => $ownerClass->getIdentifierObject($owner)),
